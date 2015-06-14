@@ -8,7 +8,9 @@ __author__ = 'Dima'
 
 
 class generate():
-    def create_semester(self, count):
+
+
+    def create_semester(self,count):
         """
         :param count: принимает количество дней в семестре
         :return: возвращяет пустой семестр
@@ -31,25 +33,30 @@ class generate():
         print(prepair_semester)
         return prepair_semester
 
-    def create_schedule(self, id_group, day_on_semestr):
+
+    def create_schedule(self,id_group,day_on_semestr, need_objects):
         """
         :param id_group: принимает номер группы
         :param day_on_semestr: принимает созданный семестр
         :return: возвращяет заполненый предметами пары
         """
         semestr = day_on_semestr
-        need_object = \
-            ['philosof', 24], \
-            ['angl', 16], \
-            ['fiz-ra', 16], \
-            ['Mat_log', 26], \
-            ['econom', 36], \
-            ['pravo', 38], \
-            ['gavr', 38], \
-            ['obj', 17], \
-            ['sys_prog', 64], \
-            ['python', 77], \
- \
+        need_object = need_objects
+        print(need_object)
+        # \
+        #     ['philosof', 24], \
+        #     ['angl', 16], \
+        #     ['fiz-ra', 16], \
+        #     ['Mat_log', 26], \
+        #     ['econom', 36], \
+        #     ['pravo', 38], \
+        #     ['gavr', 38], \
+        #     ['obj', 17], \
+        #     ['sys_prog', 64], \
+        #     ['python', 77], \
+        #
+
+
         name = ''
         num = 0
         for i in range(len(need_object)):
@@ -61,9 +68,10 @@ class generate():
             prepared_schedule = self.generate_object_for_day(object, semestr)
 
         # print(prepared_schedule)
-        return id_group, prepared_schedule
+        return  id_group,prepared_schedule
 
-    def generate_object_for_day(self, object, semester):
+
+    def generate_object_for_day(self,object, semester):
         """
         :param object: принимает кол-во пар предмета
         :param semester: принимает семестр
@@ -113,13 +121,14 @@ class generate():
             if hours_need == 0:
                 return semester
 
-    def equals_group(self, *list_group):
+
+    def equals_group(self,*list_group):
         """
             сравнение расписания на следующей день с новой группой.
             возвращяет True если есть совпадение
         """
 
-        cheking = False
+        cheking  = False
 
         for i in range(len(list_group)):
 
@@ -137,20 +146,23 @@ class generate():
                                 == list_group[i2][in_day_couple][in_couple]:
                             # print(list_group[i][in_day_couple][in_couple])
 
-                            list_group[i][in_day_couple] = random.sample(list_group[i][in_day_couple],
-                                                                         len(list_group[i][in_day_couple]))
+                            list_group[i][in_day_couple] = random.sample(list_group[i][in_day_couple],len(list_group[i][in_day_couple]))
                             # print(list_group[i][in_day_couple][in_couple])
 
                             cheking = True
 
+
         return cheking
 
 
-        # group2[1][in_day_couple] = random.sample(group2[1][in_day_couple],
-        #                                          len(group2[1][in_day_couple]))
-        # cheking = True
+                    # group2[1][in_day_couple] = random.sample(group2[1][in_day_couple],
+                    #                                          len(group2[1][in_day_couple]))
+                    # cheking = True
 
-    def compare_date_with_schedule(self, sem_with_obj):
+
+
+
+    def compare_date_with_schedule(self,sem_with_obj):
         print(sem_with_obj)
         """
         метод склеивает расписание с датой
@@ -172,26 +184,26 @@ class generate():
                     count += 1
 
 
-                    # all_group = []
-                    #
-                    #
-                    # sem = create_semester(129)
-                    #
-                    #
-                    # sem_with_obj = create_schedule("32",sem)
-                    #
-                    #
-                    #
-                    # all_group.append(sem_with_obj[1])
-                    #
-                    #
-                    #
-                    #
-                    # print(all_group)
-                    #
-                    # i = equals_group(all_group)
-                    # while i:
-                    #     i = equals_group(all_group)
-                    #
-                    # print(all_group)
-                    # compare_date_with_schedule(sem_with_obj)
+    # all_group = []
+    #
+    #
+    # sem = create_semester(129)
+    #
+    #
+    # sem_with_obj = create_schedule("32",sem)
+    #
+    #
+    #
+    # all_group.append(sem_with_obj[1])
+    #
+    #
+    #
+    #
+    # print(all_group)
+    #
+    # i = equals_group(all_group)
+    # while i:
+    #     i = equals_group(all_group)
+    #
+    # print(all_group)
+    # compare_date_with_schedule(sem_with_obj)

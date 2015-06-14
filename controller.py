@@ -8,10 +8,9 @@ import os
 """
 from engine import *
 
-
 class controller():
-    def set_day_in_semester(self, count):
-        # метод устанавливает количество дней в семестре
+    def set_day_in_semester(self,count):
+        #метод устанавливает количество дней в семестре
         f = open('detail.txt')
 
         if os.stat("detail.txt").st_size == 0:
@@ -25,7 +24,8 @@ class controller():
         else:
             self.semester = engine.create_semester(int(f.read()))
 
-    def add_group(self, id):
+
+    def add_group(self,id):
         try:
 
             conn = sqlite3.connect('bd_schedule')
@@ -41,10 +41,10 @@ class controller():
             return False
             # prepared_semester = create_semester(count)
 
-            # f = open('detail.txt',)
+        # f = open('detail.txt',)
 
     def get_group(self):
-        # метод возврящяет группы с бд
+        #метод возврящяет группы с бд
         a = 2
         try:
             conn = sqlite3.connect('bd_schedule')
@@ -73,6 +73,7 @@ class controller():
         except sqlite3.OperationalError:
             return False
 
+
     def get_objects(self):
         # метод возврящяет группы с бд
 
@@ -99,14 +100,13 @@ class controller():
         except sqlite3.OperationalError:
             return False
 
-    def start_engine(self, group_name, *objects_group):
+    def start_engine(self,group_name,*objects_group):
         f = open('detail.txt')
         self.count_day = engine.create_semester(int(f.read()))
         self.group_name = group_name
         self.object_group = objects_group
 
-        prepair = engine.create_schedule("32", self.count_day)
+        prepair = engine.create_schedule("32",self.count_day,self.object_group)
         engine.compare_date_with_schedule(prepair)
-
 
 engine = generate()

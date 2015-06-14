@@ -45,11 +45,11 @@ class gui():
         w.pack()
         object_for_group.pack()
 
-        self.send_engine = Button(self.create_schedule_form, text="создать", command=self.send_engine_controller)
+        self.send_engine = Button(self.create_schedule_form,text = "создать",command = self.send_engine_controller)
         self.send_engine.pack()
 
     def send_engine_controller(self):
-        adapter.start_engine(32, ['philosof', 24])
+        adapter.start_engine(32,['philosof', 24])
 
 
 
@@ -122,8 +122,8 @@ class gui():
         )
                 self.form_day_semester.destroy()
 
-
 adapter = controller()
 start = gui()
 
 # создание контроллера
+
