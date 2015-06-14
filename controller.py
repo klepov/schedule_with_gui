@@ -109,6 +109,8 @@ class controller():
 
 
         prepair = engine.create_schedule("32",self.count_day,self.object_group)
-        engine.compare_date_with_schedule(prepair)
+        good = engine.compare_date_with_schedule(prepair)
+
+        return good
 
 engine = generate()

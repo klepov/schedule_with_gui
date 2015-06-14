@@ -81,9 +81,7 @@ class generate():
         """
 
         hours_need = object[1]
-        print(hours_need)
         name_for_object = object[0]
-        print(name_for_object)
 
         for i in range(len(semester)):
 
@@ -187,6 +185,8 @@ class generate():
                 else:
                     print("год - 2015", " месяц - ", month, " день - ", day, "| пары -", sem_with_obj[count])
                     count += 1
+
+        return sem_with_obj
 
 
     # all_group = []

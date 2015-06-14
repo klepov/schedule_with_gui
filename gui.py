@@ -19,7 +19,8 @@ class gui():
         self.menubar.add_cascade(label="Настройки", menu=self.settings)
 
         self.root.config(menu=self.menubar)
-
+        self.textArea = Text()
+        self.textArea.pack()
         self.root.mainloop()
 
     def create_schedule(self):
@@ -49,7 +50,12 @@ class gui():
         self.send_engine.pack()
 
     def send_engine_controller(self):
-        adapter.start_engine(32,['philosof', 24],['python', 25])
+        self.good = adapter.start_engine(32,['philosof', 24],['python', 25])
+
+        for i in self.good:
+            if  'weekend' in self.good:
+                print("lol")
+        self.textArea.insert(1.0, self.good)
 
 
 
