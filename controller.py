@@ -72,3 +72,30 @@ def get_group():
 
     except sqlite3.OperationalError:
         return False
+
+
+def get_objects():
+    # метод возврящяет группы с бд
+
+    a = 2
+    try:
+        conn = sqlite3.connect('bd_schedule')
+        object_in_db = conn.cursor()
+        object_in_db.execute("select name,hours from objects_prog")
+
+
+        # Если пустой ответ - выходим
+        if a == 0:
+            return False
+
+        else:
+            # иначе формируем список и возвращяем его
+            object_from_db = []
+
+            for i in object_in_db:
+                object_from_db.append(i[0])
+
+            return object_from_db
+
+    except sqlite3.OperationalError:
+        return False

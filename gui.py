@@ -28,17 +28,22 @@ class gui():
 
         self.variable = StringVar(self.create_schedule_form)
 
-        self.get_group = get_group()
+        self.variable_objects = StringVar(self.create_schedule_form)
 
-        if self.get_group == False:
+        self.get_group = get_group()
+        self.get_objects = get_objects()
+        if self.get_group == False or self.get_objects == False:
             messagebox.showwarning(
                 "Error",
-                "Ошибка, групп не найдено"
+                "Ошибка, групп не найдено или нет предметов"
             )
             self.create_schedule_form.destroy()
 
         w = OptionMenu(self.create_schedule_form, self.variable, *self.get_group)
+        object_for_group = OptionMenu(self.create_schedule_form, self.variable_objects, *self.get_objects)
+
         w.pack()
+        object_for_group.pack()
 
 
 
