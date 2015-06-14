@@ -22,7 +22,23 @@ class gui():
         self.root.mainloop()
 
     def create_schedule(self):
-        print("new")
+        self.create_schedule_form = Toplevel()
+        self.create_schedule_form.title("создание расписания")
+
+        self.variable = StringVar(self.create_schedule_form)
+
+        self.get_group = get_group()
+
+        if self.get_group == False:
+            messagebox.showwarning(
+                "Error",
+                "Ошибка, групп не найдено"
+            )
+            self.create_schedule_form.destroy()
+            
+        w = OptionMenu(self.create_schedule_form, self.variable, *self.get_group)
+        w.pack()
+
 
 
 
