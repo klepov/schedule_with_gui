@@ -30,8 +30,8 @@ class gui():
 
         self.variable_objects = StringVar(self.create_schedule_form)
 
-        self.get_group = get_group()
-        self.get_objects = get_objects()
+        self.get_group = adapter.get_group()
+        self.get_objects = adapter.get_objects()
         if self.get_group == False or self.get_objects == False:
             messagebox.showwarning(
                 "Error",
@@ -45,6 +45,11 @@ class gui():
         w.pack()
         object_for_group.pack()
 
+        self.send_engine = Button(self.create_schedule_form, text="создать", command=self.send_engine_controller)
+        self.send_engine.pack()
+
+    def send_engine_controller(self):
+        adapter.start_engine(32, ['philosof', 24])
 
 
 
@@ -90,7 +95,7 @@ class gui():
         if check < 0:
             print("error")
         else:
-            if add_group(self.get_group_from_button):
+            if adapter.add_group(self.get_group_from_button):
                 messagebox.showwarning(
                     "группа",
                     "добавленно"
@@ -109,7 +114,7 @@ class gui():
         if check < 1:
             print("error")
         else:
-            if set_day_in_semester(get_date_from_button):
+            if adapter.set_day_in_semester(get_date_from_button):
                 messagebox.showwarning(
                 "дни",
                 "добавленно"
@@ -117,4 +122,8 @@ class gui():
         )
                 self.form_day_semester.destroy()
 
+
+adapter = controller()
 start = gui()
+
+# создание контроллера
