@@ -25,6 +25,20 @@ def set_day_in_semester(count):
         create_semester(int(f.read()))
 
 
+def add_group(id):
+    try:
+
+        conn = sqlite3.connect('bd_schedule')
+        c_group = conn.cursor()
+        c_group.execute("insert into groups values(NULL,%s)" % (id))
+
+        conn.commit()
+        conn.close()
+
+        return True
+
+    except sqlite3.OperationalError:
+        return False
         # prepared_semester = create_semester(count)
 
     # f = open('detail.txt',)

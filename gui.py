@@ -15,6 +15,7 @@ class gui():
         # ---------------------------------------------------------------
         self.settings = Menu(self.menubar, tearoff=0)
         self.settings.add_command(label="установка дней в семестре", command=self.setup_day_on_semester)
+        self.settings.add_command(label="добавить группу", command=self.add_group)
         self.menubar.add_cascade(label="Настройки", menu=self.settings)
 
         self.root.config(menu=self.menubar)
@@ -35,7 +36,7 @@ class gui():
                 "Ошибка, групп не найдено"
             )
             self.create_schedule_form.destroy()
-            
+
         w = OptionMenu(self.create_schedule_form, self.variable, *self.get_group)
         w.pack()
 
@@ -44,7 +45,10 @@ class gui():
 
 
     def setup_day_on_semester(self):
-
+        """
+        устанавливает количество дней в семестре
+        :return:
+        """
         self.form_day_semester = Toplevel()
         self.form_day_semester.title("установка дней в семетре")
 
@@ -58,7 +62,42 @@ class gui():
         self.send_button_day = Button(self.form_day_semester,text = "Ok",command = self.send_data_day)
         self.send_button_day.pack()
 
+    def add_group(self):
+        """
+        ввод группы
+        :return:
+        """
+        self.form_add_group = Toplevel()
+        self.form_add_group.title("добавление новых групп")
+        label = Label(self.form_add_group, text="Номер группы")
+        label.pack()
+        self.num_group = Entry(self.form_add_group)
+        self.num_group.pack()
+
+        self.send_button_group = Button(self.form_add_group, text="добавить", command=self.add_group_control)
+        self.send_button_group.pack()
+
+    def add_group_control(self):
+
+        self.get_group_from_button = int(self.num_group.get())
+        check = int(self.num_group.get())
+
+        if check < 0:
+            print("error")
+        else:
+            if add_group(self.get_group_from_button):
+                messagebox.showwarning(
+                    "группа",
+                    "добавленно"
+
+                )
+                self.form_add_group.destroy()
+
     def send_data_day(self):
+        """
+        добавление в файл дни
+        :return:
+        """
         get_date_from_button = self.textDay.get()
         check = int(self.textDay.get())
 
