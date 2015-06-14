@@ -7,16 +7,23 @@ class gui():
     def __init__(self):
         self.root = Tk()
 
+        self.menubar = Menu(self.root)
 
+        self.schedule = Menu(self.menubar, tearoff=0)
+        self.schedule.add_command(label="создать", command=self.create_schedule)
+        self.menubar.add_cascade(label="Расписание", menu=self.schedule)
+        # ---------------------------------------------------------------
+        self.settings = Menu(self.menubar, tearoff=0)
+        self.settings.add_command(label="установка дней в семестре", command=self.setup_day_on_semester)
+        self.menubar.add_cascade(label="Настройки", menu=self.settings)
 
-        self.main_menu = Menu(self.root)
+        self.root.config(menu=self.menubar)
 
-        self.setting = Menu(self.main_menu, tearoff=0)
-        self.setting.add_command(label = "дни для семестра",command = self.setup_day_on_semester)
-        self.main_menu.add_cascade(label = "настройки",menu=self.setting)
-
-        self.root.config(menu = self.main_menu)
         self.root.mainloop()
+
+    def create_schedule(self):
+        print("new")
+
 
 
 
