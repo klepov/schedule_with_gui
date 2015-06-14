@@ -106,6 +106,8 @@ class controller():
         self.group_name = group_name
         self.object_group = objects_group
 
+
+
         prepair = engine.create_schedule("32",self.count_day,self.object_group)
         engine.compare_date_with_schedule(prepair)
 

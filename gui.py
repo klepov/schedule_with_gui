@@ -49,7 +49,8 @@ class gui():
         self.send_engine.pack()
 
     def send_engine_controller(self):
-        adapter.start_engine(32,['philosof', 24])
+        adapter.start_engine(32,['philosof', 24],['python', 25])
+
 
 
 
@@ -126,4 +127,3 @@ adapter = controller()
 start = gui()
 
 # создание контроллера
-

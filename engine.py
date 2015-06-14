@@ -42,7 +42,6 @@ class generate():
         """
         semestr = day_on_semestr
         need_object = need_objects
-        print(need_object)
         # \
         #     ['philosof', 24], \
         #     ['angl', 16], \
@@ -65,9 +64,12 @@ class generate():
 
             object = [name, hours]
 
+
+
             prepared_schedule = self.generate_object_for_day(object, semestr)
 
-        # print(prepared_schedule)
+            print(prepared_schedule)
+
         return  id_group,prepared_schedule
 
 
@@ -79,8 +81,9 @@ class generate():
         """
 
         hours_need = object[1]
-        name_for_object = object[0]
         print(hours_need)
+        name_for_object = object[0]
+        print(name_for_object)
 
         for i in range(len(semester)):
 
@@ -119,6 +122,7 @@ class generate():
                 hours_need -= 1
 
             if hours_need == 0:
+                print(semester)
                 return semester
 
 
@@ -163,7 +167,8 @@ class generate():
 
 
     def compare_date_with_schedule(self,sem_with_obj):
-        print(sem_with_obj)
+
+        sem_with_obj =sem_with_obj[1]
         """
         метод склеивает расписание с датой
         :return: склееное расписание
@@ -180,7 +185,7 @@ class generate():
                     print(" weekend ")
                     continue
                 else:
-                    print("год - 2015", " месяц - ", month, " день - ", day, "| пары -", sem_with_obj[1][count])
+                    print("год - 2015", " месяц - ", month, " день - ", day, "| пары -", sem_with_obj[count])
                     count += 1
 
 
