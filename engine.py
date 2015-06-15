@@ -172,6 +172,7 @@ class generate():
         :return: склееное расписание
         """
         count = 0
+        complite = []
         for month in range(1, 7):
             days = calendar.monthrange(2015, month)  # узнаем сколько дней
             days = days[1] + 1  # счет с нуля
@@ -183,10 +184,11 @@ class generate():
                     print(" weekend ")
                     continue
                 else:
-                    print("год - 2015", " месяц - ", month, " день - ", day, "| пары -", sem_with_obj[count])
+                    temp = "год - 2015", " месяц - ", month, " день - ", day, "| пары -", sem_with_obj[count]
+                    complite.append(temp)
                     count += 1
 
-        return sem_with_obj
+        return complite
 
 
     # all_group = []

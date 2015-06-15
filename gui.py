@@ -53,7 +53,9 @@ class gui():
         self.good = adapter.start_engine(32,['philosof', 24],['python', 25])
 
         for i in self.good:
-            if  'weekend' in self.good:
+            if  'weekend' == self.good:
+                self.textArea.insert("\n")
+                continue
                 print("lol")
         self.textArea.insert(1.0, self.good)
 
