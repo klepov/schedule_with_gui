@@ -63,12 +63,12 @@ class gui():
         scrollbar = Scrollbar(self.choose)
         scrollbar.pack(side=RIGHT, fill=Y)
 
-        listbox = Listbox(self.choose, yscrollcommand=scrollbar.set)
-        for i in range(len(self.good[0])):
-            listbox.insert(END, self.good[0][i])
-        listbox.pack(side=TOP, fill=BOTH)
+        self.listbox = Listbox(self.choose, yscrollcommand=scrollbar.set)
+        for i in range(len(self.good[0][0])):
+            self.listbox.insert(END, self.good[0][0][i])
+        self.listbox.pack(side=TOP, fill=BOTH)
 
-        scrollbar.config(command=listbox.yview)
+        scrollbar.config(command=self.listbox.yview)
         self.see = Button(self.choose,text = "показать",command = self.see_schedule)
         self.see.pack(side = BOTTOM)
         self.choose.mainloop()
@@ -80,8 +80,8 @@ class gui():
         # self.textArea.insert(1.0, self.good)
 
 
-    def see_schedule(self,position):
-        pass
+    def see_schedule(self):
+        print(self.good[0][0].index(self.listbox.get(self.listbox.curselection())))
 
     def setup_day_on_semester(self):
         """

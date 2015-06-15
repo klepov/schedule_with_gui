@@ -173,7 +173,10 @@ class generate():
         """
         count = 0
         complite = []
-        sending = []
+        complite_schedule = []
+
+        sending_date = []
+        sending_objects = []
         for month in range(1, 7):
             days = calendar.monthrange(2015, month)  # узнаем сколько дней
             days = days[1] + 1  # счет с нуля
@@ -182,14 +185,16 @@ class generate():
                 check = calendar.weekday(2015, month,
                                          day)  # узнать день недели. если больше 5(скипнуть/субботу.воскресение)
                 if check == 5 or check == 6:
-                    sending.append(complite)
+                    sending_date.append(complite)
+                    sending_objects.append(complite_schedule)
                 else:
                     # temp = "год - 2015", " месяц - ", month, " день - ", day, "| пары -", sem_with_obj[count]
                     date = 2015,month,day
                     complite.append(date)
+                    complite_schedule = [sem_with_obj[count]]
                     count += 1
 
-        return sending
+        return sending_date,sending_objects
 
 
     # all_group = []
