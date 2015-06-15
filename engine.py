@@ -173,6 +173,7 @@ class generate():
         """
         count = 0
         complite = []
+        sending = []
         for month in range(1, 7):
             days = calendar.monthrange(2015, month)  # узнаем сколько дней
             days = days[1] + 1  # счет с нуля
@@ -181,14 +182,14 @@ class generate():
                 check = calendar.weekday(2015, month,
                                          day)  # узнать день недели. если больше 5(скипнуть/субботу.воскресение)
                 if check == 5 or check == 6:
-                    print(" weekend ")
-                    continue
+                    sending.append(complite)
                 else:
-                    temp = "год - 2015", " месяц - ", month, " день - ", day, "| пары -", sem_with_obj[count]
-                    complite.append(temp)
+                    # temp = "год - 2015", " месяц - ", month, " день - ", day, "| пары -", sem_with_obj[count]
+                    date = 2015,month,day
+                    complite.append(date)
                     count += 1
 
-        return complite
+        return sending
 
 
     # all_group = []

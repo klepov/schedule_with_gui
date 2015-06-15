@@ -1,4 +1,5 @@
 from tkinter import messagebox
+from tkinter.tix import HList, WINDOW
 from controller import *
 from tkinter import *
 
@@ -19,8 +20,6 @@ class gui():
         self.menubar.add_cascade(label="Настройки", menu=self.settings)
 
         self.root.config(menu=self.menubar)
-        self.textArea = Text()
-        self.textArea.pack()
         self.root.mainloop()
 
     def create_schedule(self):
@@ -52,16 +51,37 @@ class gui():
     def send_engine_controller(self):
         self.good = adapter.start_engine(32,['philosof', 24],['python', 25])
 
-        for i in self.good:
-            if  'weekend' == self.good:
-                self.textArea.insert("\n")
-                continue
-                print("lol")
-        self.textArea.insert(1.0, self.good)
+        self.choose = Toplevel()
+        # scrollbar = Scrollbar(self.choose)
+        # scrollbar.pack(side=RIGHT, fill=Y)
+        #
+        # for i in range(len(self.good[0])):
+        #
+        #     label = Label(self.choose,text = self.good[0][i],yscrollcommand=scrollbar.set)
+        #     label.pack()
+
+        scrollbar = Scrollbar(self.choose)
+        scrollbar.pack(side=RIGHT, fill=Y)
+
+        listbox = Listbox(self.choose, yscrollcommand=scrollbar.set)
+        for i in range(len(self.good[0])):
+            listbox.insert(END, self.good[0][i])
+        listbox.pack(side=TOP, fill=BOTH)
+
+        scrollbar.config(command=listbox.yview)
+        self.see = Button(self.choose,text = "показать",command = self.see_schedule)
+        self.see.pack(side = BOTTOM)
+        self.choose.mainloop()
+        # for i in self.good:
+        #     if  'weekend' == self.good:
+        #         self.textArea.insert("\n")
+        #         continue
+        #         print("lol")
+        # self.textArea.insert(1.0, self.good)
 
 
-
-
+    def see_schedule(self,position):
+        pass
 
     def setup_day_on_semester(self):
         """
