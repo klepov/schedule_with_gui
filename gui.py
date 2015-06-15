@@ -81,7 +81,16 @@ class gui():
 
 
     def see_schedule(self):
-        print(self.good[0][0].index(self.listbox.get(self.listbox.curselection())))
+        cursor_now = self.good[0][0].index(self.listbox.get(self.listbox.curselection()))
+        print(cursor_now)
+
+        see = Toplevel()
+        schedule = Label(see, text = self.good[1][cursor_now])
+        schedule.pack(side = TOP)
+        exit = Button(self.see,text = "посмотрел",command = see.destroy)
+        exit.pack(side = BOTTOM)
+
+        see.mainloop()
 
     def setup_day_on_semester(self):
         """
