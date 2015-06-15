@@ -49,9 +49,14 @@ class gui():
         self.send_engine.pack()
 
     def send_engine_controller(self):
+        # метод получает заполненый семестр и
+        # заполняет listbox днями семестра,
+        # вызывает другой метод, для показа расписания на выбраный день
+
+
         self.good = adapter.start_engine(32,['philosof', 24],['python', 25])
 
-        self.choose = Toplevel()
+        self.choose_form = Toplevel()
         # scrollbar = Scrollbar(self.choose)
         # scrollbar.pack(side=RIGHT, fill=Y)
         #
@@ -60,18 +65,18 @@ class gui():
         #     label = Label(self.choose,text = self.good[0][i],yscrollcommand=scrollbar.set)
         #     label.pack()
 
-        scrollbar = Scrollbar(self.choose)
+        scrollbar = Scrollbar(self.choose_form)
         scrollbar.pack(side=RIGHT, fill=Y)
 
-        self.listbox = Listbox(self.choose, yscrollcommand=scrollbar.set)
+        self.listbox = Listbox(self.choose_form, yscrollcommand=scrollbar.set)
         for i in range(len(self.good[0][0])):
             self.listbox.insert(END, self.good[0][0][i])
         self.listbox.pack(side=TOP, fill=BOTH)
 
         scrollbar.config(command=self.listbox.yview)
-        self.see = Button(self.choose,text = "показать",command = self.see_schedule)
+        self.see = Button(self.choose_form,text = "показать",command = self.see_schedule)
         self.see.pack(side = BOTTOM)
-        self.choose.mainloop()
+        self.choose_form.mainloop()
         # for i in self.good:
         #     if  'weekend' == self.good:
         #         self.textArea.insert("\n")
@@ -81,16 +86,30 @@ class gui():
 
 
     def see_schedule(self):
+        # метод определяет, где стоит курсор на listbox,
+        # затем создает форму, где показывает расписание на выбраный день
+
+        self.create_schedule_form.withdraw()
+        self.root.withdraw()
+        self.choose_form.withdraw()
         cursor_now = self.good[0][0].index(self.listbox.get(self.listbox.curselection()))
         print(cursor_now)
 
-        see = Toplevel()
-        schedule = Label(see, text = self.good[1][cursor_now])
+        self.see = Tk()
+        schedule = Label(self.see, text = self.good[1][cursor_now])
         schedule.pack(side = TOP)
-        exit = Button(self.see,text = "посмотрел",command = see.destroy)
+        exit = Button(self.see,text = "посмотрел",command = self.skip)
         exit.pack(side = BOTTOM)
 
-        see.mainloop()
+        self.see.mainloop()
+
+    def skip(self):
+        # метод показывет все формы и закрывает просмотр форму расписания
+
+        self.see.destroy()
+        self.create_schedule_form.deiconify()
+        self.root.deiconify()
+        self.choose_form.deiconify()
 
     def setup_day_on_semester(self):
         """
