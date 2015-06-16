@@ -96,10 +96,15 @@ class gui():
         print(cursor_now)
 
         self.see = Tk()
-        schedule = Label(self.see, text = self.good[1][cursor_now])
-        schedule.pack(side = TOP)
+        for i in range(4):
+            num_pars = Label(self.see,text = str(int(i)+1) + " пара ")
+            num_pars.grid(row=i+1,column=0)
+
+        for i in range(4):
+            schedule = Label(self.see, text = self.good[1][cursor_now][0][i])
+            schedule.grid(row=i+1,column=5)
+
         exit = Button(self.see,text = "посмотрел",command = self.skip)
-        exit.pack(side = BOTTOM)
 
         self.see.mainloop()
 
