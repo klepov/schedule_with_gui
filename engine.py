@@ -191,7 +191,12 @@ class generate():
                     # temp = "год - 2015", " месяц - ", month, " день - ", day, "| пары -", sem_with_obj[count]
                     date = 2015,month,day
                     complite.append(date)
-                    complite_schedule = [sem_with_obj[count]]
+                    if sem_with_obj[count] == [0,0,0,0]:
+
+                        complite_schedule = "нет пар"
+
+                    else:
+                        complite_schedule = [sem_with_obj[count]]
                     count += 1
 
         return sending_date,sending_objects
